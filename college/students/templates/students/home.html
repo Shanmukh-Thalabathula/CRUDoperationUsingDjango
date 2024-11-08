@@ -1,0 +1,63 @@
+{% extends 'master.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<div class="d-flex p-2 justify-content-between  p-3 mb-2 bg-primary-subtle text-primary-emphasis  rounded-2  " >
+    <h1>List of Students</h1>
+    <a href="{% url 'add' %}" class="btn btn-outline-primary" type="button"><i class="fa-solid fa-plus"></i></a>
+</div>
+
+
+{% if messages %}
+    <div class="alert alert-success" >
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+
+<div >
+    <form action="{% url 'search' %}" method="post" >
+        {% csrf_token %}
+        <div class="mb-3 d-flex">
+            <input type="text" name="q" class="form-control" placeholder="enter your name here">
+            <button type="submit" class="btn btn-outline-info"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </form>
+</div>
+
+{% if students %}
+<style>
+</style>
+
+<table class="table table-striped table-hover" >
+    <tr>
+        <th>S.No</th>
+        <th>Names</th>
+        <th>Details</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    {% for student in students %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{student.full_name}}</td>
+        <td><a href="{% url 'details' pk=student.id %}"><button class="btn btn-info" ><i class="fa-solid fa-circle-info"></i></button></a></td>
+        <td><a href="{% url 'update' pk=student.id %}"><button class="btn btn-warning" ><i class="fa-solid fa-pen-to-square"></i></i></button></a></td>
+        <td><a href="{% url 'delete' pk=student.id %}"><button class="btn btn-danger" ><i class="fa-solid fa-trash"></i></button></a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% else %}
+<div class="alert alert-info">
+<h2>There isn't any Students list yet..</h2>
+</div>
+{% endif %}
+
+{% endblock %}

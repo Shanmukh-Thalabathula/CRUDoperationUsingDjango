@@ -1,0 +1,23 @@
+{% extends 'master.html' %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+<h1>Adding a new student</h1>
+
+<form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="mb-3 grid gap-0 row-gap-3">
+    {{form.as_p}}
+    <label for="username">Username</label>
+    <input type="text" name="username" class="form-control p-2 g-col-6" placeholder="enter your username"><br>
+    <label for="password">Password</label>
+    <input type="text" name="password" class="form-control p-2 g-col-6" placeholder="enter your password"><br>
+    <button type="submit" class="btn btn-primary">Add</button>
+</div>
+
+</form>
+<a href="{% url 'home' %}" class="btn btn-secondary" type="button">Home</a>
+{% endblock %}

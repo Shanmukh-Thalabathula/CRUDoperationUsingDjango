@@ -1,0 +1,21 @@
+{% extends 'master.html' %}
+
+{% block title %}
+Message
+{% endblock %}
+
+{% block content %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<script>
+    setTimeout(function() {
+        window.location.href = "{% url 'home' %}";
+    }, 2000);
+</script>
+{% endblock %}

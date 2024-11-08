@@ -1,0 +1,71 @@
+{% extends 'master.html' %}
+
+{% block title %}
+Details
+{% endblock %}
+
+{% block content %}
+
+{% if student %}
+
+{% if messages %}
+    <div class="alert alert-success" >
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+
+<table class="table table-hover">
+    <tr>
+        <th colspan="3" style="text-align:center"><h1>Details of the Student</h1></th>
+    </tr>
+    <tr>
+        <th rowspan="7" style="text-align:center;line-hight">
+            {% if student.profile and student.profile.url %}
+            <img src="{{ student.profile.url }}" alt="Profile pic" width="200" height="250">
+            {% else %}
+            <p>Profile pic not available</p>
+            {% endif %}
+        </th>
+    </tr>
+    <tr>
+        <th>Full Name</th>
+        <td>{{ student.full_name }}</td>
+    </tr>
+    <tr>
+        <th>Pin Number</th>
+        <td>{{ student.pin_no }}</td>
+    </tr>
+    <tr>
+        <th>Phone Number</th>
+        <td>{{ student.phone_number }}</td>
+    </tr>
+    <tr>
+        <th>Gmail</th>  <!-- Changed from Gmail to Email -->
+        <td>{{ student.gmail }}</td>  <!-- Changed from gmail to email -->
+    </tr>
+    <tr>
+        <th>Branch</th>
+        <td>{{ student.branch }}</td>
+    </tr>
+    <tr>
+        <th>Age</th>
+        <td>{{ student.age }}</td>
+    </tr>
+    <tr>
+        <th colspan="3" style="text-align:center">
+            <a href="{% url 'home' %}" class="d-grid gap-2  btn btn-secondary">
+                home
+            </a>
+        </th>
+    </tr>
+</table>
+
+{% else %}
+<h2>No student details available yet.</h2>
+{% endif %}
+
+{% endblock %}

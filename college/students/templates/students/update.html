@@ -1,0 +1,20 @@
+{% extends 'master.html' %}
+
+{% block title %}
+Updating Student
+{% endblock %}
+
+{% block content %}
+<div class="p-3 mb-2 bg-primary-subtle text-primary-emphasis  rounded-2">
+    <h1>Updating Student Information</h1>
+</div>
+<form action="{% url 'update' pk=id %}" method="post" enctype="multipart/form-data"> <!-- Include enctype for file uploads -->
+    {% csrf_token %}
+    <div class="mb-3 grid gap-0 row-gap-3">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div> <!-- Change button label to Update -->
+</form>
+
+<a href="{% url 'home' %}" class="btn btn-secondary" type="button">Home</a>
+{% endblock %}

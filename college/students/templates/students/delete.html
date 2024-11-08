@@ -1,0 +1,18 @@
+{% extends 'master.html' %}
+
+{% block title %}
+Deleting
+{% endblock %}
+
+{% block content %}
+
+<form action="{% url 'delete' pk=id %}" method="post" >
+{% csrf_token %}
+<div class="p-3 mb-2 bg-danger text-white  mb-3 grid gap-0 row-gap-3  d-flex justify-content-center  rounded-2">
+<h2>do you want to delete {{form.full_name}}</h2>
+</div>
+<button type="submit" class="btn btn-primary mb-3 grid gap-0 row-gap-3">Delete</button>
+
+</form>
+<a href="{% url 'home' %}" class="btn btn-secondary" type="button">Home</a>
+{% endblock %}
